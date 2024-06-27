@@ -1,0 +1,32 @@
+shows:
+  - name: "Pretty little liars"
+    locations:
+      - name: "Contemporary living room"
+        elements:
+          - "Couch"
+          - "Coffee table"
+          - "TV"
+          - "Bookshelf"
+          - "Lamp"
+          - "Rug"
+          - "Painting"
+          - "Vase"
+          - "Curtains"
+          - "Pillows"
+          - "Blanket"
+        outfits:
+          - "Micro minidress"
+          -
+      - name: "Contemporary Bedroom"
+        elements:
+          - "Bed"
+          - "Nightstand"
+          - "Lamp"
+          - "Dresser"
+          - "Mirror"
+          - "Painting"
+          - "Vase"
+          - "Curtains"
+          - "Pillows"
+          - "Blanket"
+      - name: "Contemporary Lobby"

@@ -1,0 +1,53 @@
+shows:
+  - name: "Pretty Little Liars (tv show still)"
+    charactersFemale:
+      - "Aria Montgomery (Lucy Hale)"
+      - "Spencer Hastings (Troian Bellisario)"
+      - "Hanna Marin (Ashley Benson)"
+      - "Emily Fields (Shay Mitchell)"
+      - "Alison DiLaurentis (Sasha Pieterse)"
+    charactersMale:
+      - "Ezra Fitz (Ian Harding)"
+      - "Toby Cavanaugh (Keegan Allen)"
+      - "Caleb Rivers (Tyler Blackburn)"
+      - "Jason DiLaurentis (Drew Van Acker)"
+      - "Wren Kingston (Julian Morris)"
+    atmospheres:
+      - "Beautiful, affluent lifestyle"
+      - "Mysterious and secretive"
+      - "High school drama"
+    locations:
+      - "High school hallway (daytime)"
+      - "Suburban bedroom (nighttime)"
+      - "Secretive cafe meeting"
+  - name: "Twilight (movie still)"
+    charactersFemale:
+      - "Bella Swan (Kristen Stewart)"
+      - "Alice Cullen (Ashley Greene)"
+      - "Rosalie Hale (Nikki Reed)"
+      - "Esme Cullen (Elizabeth Reaser)"
+      - "Victoria (Rachelle Lefevre)"
+    charactersMale:
+      - "Edward Cullen (Robert Pattinson)"
+      - "Jacob Black (Taylor Lautner)"
+      - "Emmett Cullen (Kellan Lutz)"
+      - "Carlisle Cullen (Peter Facinelli)"
+      - "James (Cam Gigandet)"
+    atmospheres:
+      - "Romantic and dangerous"
+      - "Supernatural"
+      - "Small town charm"
+    locations:
+      - "Forest clearing (overcast)"
+      - "Vampire's ornate bedroom"
+      - "Moody high school cafeteria"
+outfits:
+  - "cheerleader uniform with skimpy top and short skirt"
+  - "cute cat ears headband, oversized sweater, micro miniskirt"
+  - "sexy pirate costume, corset, mini dress, boots with buckles"
+  - "sultry mermaid tail with matching bikini top and scales on the chest"
+  - "futuristic space suit with metallic accents and thighhigh boots"
+  - "elegant ball gown with a high slit and intricate beading"
+  - "slinky cocktail dress with a plunging neckline and thighhigh slit"
+  - "edgy leather jacket with studs and ripped skinny jeans"
+  - "athleisure set with a crop top and high-waisted leggings"
