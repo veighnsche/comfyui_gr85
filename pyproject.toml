@@ -1,0 +1,15 @@
+[project]
+name = "comfyui_gr85"
+description = "Nodes:Image Dimension Resizer, Image Sizer, Random Ratio, Show Text, Random Title Character, Random Wildcard Tag Picker, Random Show Atm Loc Outfit, Contains Word, Elements Concatenator, ..."
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["openai"]
+
+[project.urls]
+Repository = "https://github.com/veighnsche/comfyui_gr85"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "comfyui_gr85"
+Icon = ""
