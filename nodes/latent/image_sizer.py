@@ -1,30 +1,29 @@
 import math
 
-
 class ImageSizer:
     def __init__(self):
         pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "original_dimensions": (["512x512", "512*768", "768x768", "1024x1024", "1280x720", "1920x1080"],),
-                "ratio_1": ("INT", {
+                "original_dimensions": (["512x512", "512x768", "768x768", "768x1024", "1024x1024", "1024x1280", "1280x1280", "1280x1536", "1536x1536", "1280x720", "1280x1080", "1920x1080", "1920x1440", "2560x1440"],),
+                "width": ("INT", {
                     "default": 1,
                     "min": 1,
                     "max": 4096,
                     "step": 1,
                     "display": "number"
                 }),
-                "ratio_2": ("INT", {
+                "height": ("INT", {
                     "default": 1,
                     "min": 1,
                     "max": 4096,
                     "step": 1,
                     "display": "number"
                 }),
-                "orientation": (["landscape", "portrait"],),
+                "orientation": (["original", "landscape", "portrait"],),
             }
         }
 
@@ -35,31 +34,20 @@ class ImageSizer:
 
     CATEGORY = "GR85/Latent"
 
-    def resize_dimensions(self, original_dimensions, ratio_1, ratio_2, orientation):
-        original_width, original_height = map(int, original_dimensions.split("x"))
+    def resize_dimensions(self, original_dimensions, width, height, orientation):
+        source_width, source_height = map(int, original_dimensions.split("x"))
 
-        """Calculates new dimensions for an image while maintaining the same pixel count
-          and a specified aspect ratio.
-         
-        Args:
-          original_width: The original width of the image in pixels.
-          original_height: The original height of the image in pixels.
-          ratio_1: The first part of the desired aspect ratio.
-          ratio_2: The second part of the desired aspect ratio.
-          orientation: Either "landscape" or "portrait" (used for clarity, not calculation)
-         
-        Returns:
-          A tuple containing the new width and height of the image.
-        """
+        # Total pixels in the original image
+        total_pixels = source_width * source_height
 
-        total_pixels = original_width * original_height
-        side_1 = math.sqrt(total_pixels * ratio_1 / ratio_2)
-        side_2 = side_1 * ratio_2 / ratio_1
+        # Calculate new dimensions while maintaining the pixel count and aspect ratio
+        new_height = math.sqrt(total_pixels * height / width)
+        new_width = new_height * width / height
 
-        bigger_side = max(side_1, side_2)
-        smaller_side = min(side_1, side_2)
-
+        # Adjust for orientation
         if orientation == 'landscape':
-            return int(round(bigger_side)), int(round(smaller_side))
-        else:
-            return int(round(smaller_side)), int(round(bigger_side))
+            new_width, new_height = max(new_width, new_height), min(new_width, new_height)
+        elif orientation == 'portrait':
+            new_width, new_height = min(new_width, new_height), max(new_width, new_height)
+
+        return int(round(new_width)), int(round(new_height))
