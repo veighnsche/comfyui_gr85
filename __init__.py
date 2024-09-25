@@ -3,14 +3,19 @@ from custom_nodes.GR85.nodes.latent.image_sizer import ImageSizer
 from custom_nodes.GR85.nodes.latent.image_sizer_all import ImageSizerAll
 from custom_nodes.GR85.nodes.latent.random_ratio import RandomRatio
 from custom_nodes.GR85.nodes.logging.show_text import ShowText
+from custom_nodes.GR85.nodes.mask.batch_rect_mask_generator import BatchRectMaskGenerator
 from custom_nodes.GR85.nodes.prompt.contains_word import ContainsWord
 from custom_nodes.GR85.nodes.prompt.element_concatenator import ElementConcatenator
+from custom_nodes.GR85.nodes.prompt.flux_attention_seeker_2 import FluxAttentionSeeker2
+from custom_nodes.GR85.nodes.prompt.generate_default_clip_values import GenerateDefaultCLIPValues
 from custom_nodes.GR85.nodes.prompt.insert_character import InsertCharacter
 from custom_nodes.GR85.nodes.prompt.int_to_string import IntToStringConverter
 from custom_nodes.GR85.nodes.prompt.json_file_reader import JSONFileReader
 from custom_nodes.GR85.nodes.prompt.json_file_saver import JSONFileSaver
 from custom_nodes.GR85.nodes.prompt.llm_enhance import LlmEnhancer
+from custom_nodes.GR85.nodes.prompt.string_list_selector import StringListSelector
 from custom_nodes.GR85.nodes.prompt.tag_injector import TagInjector
+from custom_nodes.GR85.nodes.prompt.update_clip_blocks import UpdateT5Blocks
 from custom_nodes.GR85.nodes.prompt.wildcard.random_show_atm_loc_outf import RandomShowAtmLocOutfit
 from custom_nodes.GR85.nodes.prompt.wildcard.random_title_character import RandomTitleCharacter
 from custom_nodes.GR85.nodes.prompt.wildcard.random_wildcard_tag_picker import RandomWildcardTagPicker
@@ -37,9 +42,16 @@ NODE_CLASS_MAPPINGS = {
     "GR85_JSONFileReader": JSONFileReader,
     "GR85_LlmEnhancer": LlmEnhancer,
     "GR85_TagInjector": TagInjector,
+    "GR85_StringListSelector": StringListSelector,
+
+    "GR85_UpdateT5Blocks": UpdateT5Blocks,
+    "GR85_GenerateDefaultClipValues": GenerateDefaultCLIPValues,
+    "GR85_FluxAttentionSeeker2": FluxAttentionSeeker2,
 
     "GR85_NextSeed": NextSeed,
     "GR85_StrSafe": StrSafe,
+
+    "GR85_BatchRectMaskGenerator": BatchRectMaskGenerator,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -62,9 +74,17 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_JSONFileReader": "JSON File Reader",
     "GR85_LlmEnhancer": "Llm Enhancer",
     "GR85_TagInjector": "Tag Injector",
+    "GR85_StringListSelector": "String List Selector",
+
+    "GR85_UpdateT5Blocks": "Update T5 Blocks",
+    "GR85_GenerateDefaultClipValues": "Generate Default CLIP Values",
+    "GR85_FluxAttentionSeeker2": "Flux Attention Seeker 2",
 
     "GR85_NextSeed": "Next Seed",
     "GR85_StrSafe": "String Safe",
+
+    "GR85_BatchRectMaskGenerator": "Batch Rect Mask Generator",
+
 }
 
 WEB_DIRECTORY = "./js"
