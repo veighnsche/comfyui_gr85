@@ -1,35 +1,40 @@
 import math
 
-
 class ImageSizerAll:
     def __init__(self):
         pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "original_width": ("INT", {
-                    "forceInput": True,
+                "pixel_amount": ("INT", {
+                    "default": 1024*1024,
+                    "step": 1,
+                    "display": "number"
                 }),
-                "original_height": ("INT", {
-                    "forceInput": True,
-                }),
-                "ratio_1": ("INT", {
+                "width": ("INT", {
                     "default": 1,
                     "min": 1,
                     "max": 4096,
                     "step": 1,
                     "display": "number"
                 }),
-                "ratio_2": ("INT", {
+                "height": ("INT", {
                     "default": 1,
                     "min": 1,
                     "max": 4096,
                     "step": 1,
                     "display": "number"
                 }),
-                "orientation": (["landscape", "portrait"],),
+                "orientation": (["original", "landscape", "portrait"],),
+                "tolerance": ("INT", {
+                    "default": 16,
+                    "min": 1,
+                    "max": 128,
+                    "step": 1,
+                    "display": "number"
+                }),
             }
         }
 
@@ -40,29 +45,45 @@ class ImageSizerAll:
 
     CATEGORY = "GR85/Latent"
 
-    def resize_dimensions_all(self, original_width, original_height, ratio_1, ratio_2, orientation):
-        """Calculates new dimensions for an image while maintaining the same pixel count
-          and a specified aspect ratio.
-         
-        Args:
-          original_width: The original width of the image in pixels.
-          original_height: The original height of the image in pixels.
-          ratio_1: The first part of the desired aspect ratio.
-          ratio_2: The second part of the desired aspect ratio.
-          orientation: Either "landscape" or "portrait" (used for clarity, not calculation)
-         
-        Returns:
-          A tuple containing the new width and height of the image.
+    def resize_dimensions_all(self, pixel_amount, width, height, orientation, tolerance):
         """
+        Calculates new dimensions for an image while maintaining the same pixel count
+        and a specified aspect ratio, adjusted to the given tolerance.
 
-        total_pixels = original_width * original_height
-        side_1 = math.sqrt(total_pixels * ratio_1 / ratio_2)
-        side_2 = side_1 * ratio_2 / ratio_1
+        Args:
+            pixel_amount (int): The total number of pixels for the image.
+            width (int): The first part of the desired aspect ratio.
+            height (int): The second part of the desired aspect ratio.
+            orientation (str): "original", "landscape", or "portrait".
+            tolerance (int): The value to which width and height should be adjusted.
 
-        bigger_side = max(side_1, side_2)
-        smaller_side = min(side_1, side_2)
+        Returns:
+            tuple: A tuple containing the new width and height of the image.
+        """
+        # Calculate the aspect ratio based on width and height
+        aspect_ratio = width / height
 
-        if orientation == 'landscape':
-            return int(round(bigger_side)), int(round(smaller_side))
+        # Calculate the new dimensions based on the pixel amount and aspect ratio
+        new_width = math.sqrt(pixel_amount * aspect_ratio)
+        new_height = new_width / aspect_ratio
+
+        # Determine which side is bigger
+        bigger_side = max(new_width, new_height)
+        smaller_side = min(new_width, new_height)
+
+        # Adjust dimensions based on orientation
+        if orientation == 'original':
+            final_width, final_height = int(round(new_width)), int(round(new_height))
+        elif orientation == 'landscape':
+            final_width, final_height = int(round(bigger_side)), int(round(smaller_side))
+        elif orientation == 'portrait':
+            final_width, final_height = int(round(smaller_side)), int(round(bigger_side))
         else:
-            return int(round(smaller_side)), int(round(bigger_side))
+            # Fallback to original if an unknown orientation is provided
+            final_width, final_height = int(round(new_width)), int(round(new_height))
+
+        # Apply tolerance by rounding to the nearest multiple of tolerance
+        final_width = round(final_width / tolerance) * tolerance
+        final_height = round(final_height / tolerance) * tolerance
+
+        return final_width, final_height
