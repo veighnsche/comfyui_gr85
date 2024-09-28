@@ -87,5 +87,5 @@ class SimpleWildcardPicker:
             print(f"Error processing prompt: {e}")
             prompt = ''  # Or handle as appropriate
 
-        return prompt
+        return (prompt,)
 
