@@ -24,6 +24,13 @@ class ImageSizer:
                     "display": "number"
                 }),
                 "orientation": (["original", "landscape", "portrait"],),
+                "tolerance": ("INT", {
+                    "default": 16,
+                    "min": 1,
+                    "max": 128,
+                    "step": 1,
+                    "display": "number"
+                }),
             }
         }
 
@@ -34,7 +41,7 @@ class ImageSizer:
 
     CATEGORY = "GR85/Latent"
 
-    def resize_dimensions(self, original_dimensions, width, height, orientation):
+    def resize_dimensions(self, original_dimensions, width, height, orientation, tolerance):
         source_width, source_height = map(int, original_dimensions.split("x"))
 
         # Total pixels in the original image
@@ -50,4 +57,8 @@ class ImageSizer:
         elif orientation == 'portrait':
             new_width, new_height = min(new_width, new_height), max(new_width, new_height)
 
-        return int(round(new_width)), int(round(new_height))
+        # Adjust dimensions to be divisible by the tolerance value
+        new_width = int(round(new_width / tolerance) * tolerance)
+        new_height = int(round(new_height / tolerance) * tolerance)
+
+        return int(new_width), int(new_height)

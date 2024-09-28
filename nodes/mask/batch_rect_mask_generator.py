@@ -35,7 +35,7 @@ class BatchRectMaskGenerator:
 
     FUNCTION = "create_mask"
 
-    CATEGORY = "Masquerade Nodes"
+    CATEGORY = "GR85/Mask"
 
     def create_mask(self, mode, origin, x, y, width, height, image_width, image_height, copy_image_size=None):
         # Convert y values from list of strings to a tensor of floats

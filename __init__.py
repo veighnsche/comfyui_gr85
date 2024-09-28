@@ -21,6 +21,11 @@ from custom_nodes.comfyui_gr85.nodes.prompt.wildcard.random_title_character impo
 from custom_nodes.comfyui_gr85.nodes.prompt.wildcard.random_wildcard_tag_picker import RandomWildcardTagPicker
 from custom_nodes.comfyui_gr85.nodes.utils.next_seed import NextSeed
 from custom_nodes.comfyui_gr85.nodes.utils.str_safe import StrSafe
+from custom_nodes.comfyui_gr85.nodes.mask.paste_by_mask_gr85 import PasteByMaskGr85
+from custom_nodes.comfyui_gr85.nodes.prompt.seed_based_output_selector import SeedBasedOutputSelector
+from custom_nodes.comfyui_gr85.nodes.prompt.simple_wildcard_picker import SimpleWildcardPicker
+
+
 
 NODE_CLASS_MAPPINGS = {
     "GR85_ImageDimensionResizer": ImageDimensionResizer,
@@ -43,6 +48,8 @@ NODE_CLASS_MAPPINGS = {
     "GR85_LlmEnhancer": LlmEnhancer,
     "GR85_TagInjector": TagInjector,
     "GR85_StringListSelector": StringListSelector,
+    "GR85_SeedBasedOutputSelector": SeedBasedOutputSelector,
+    "GR85_SimpleWildcardPicker": SimpleWildcardPicker,
 
     "GR85_UpdateT5Blocks": UpdateT5Blocks,
     "GR85_GenerateDefaultClipValues": GenerateDefaultCLIPValues,
@@ -52,6 +59,7 @@ NODE_CLASS_MAPPINGS = {
     "GR85_StrSafe": StrSafe,
 
     "GR85_BatchRectMaskGenerator": BatchRectMaskGenerator,
+    "GR85_PasteByMaskGr85": PasteByMaskGr85
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -75,6 +83,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_LlmEnhancer": "Llm Enhancer",
     "GR85_TagInjector": "Tag Injector",
     "GR85_StringListSelector": "String List Selector",
+    "GR85_SeedBasedOutputSelector": "Seed Based Output Selector",
+    "GR85_SimpleWildcardPicker": "Simple Wildcard Picker",
 
     "GR85_UpdateT5Blocks": "Update T5 Blocks",
     "GR85_GenerateDefaultClipValues": "Generate Default CLIP Values",
@@ -84,7 +94,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_StrSafe": "String Safe",
 
     "GR85_BatchRectMaskGenerator": "Batch Rect Mask Generator",
-
+    "GR85_PasteByMaskGr85": "Paste By Mask Gr85"
 }
 
 WEB_DIRECTORY = "./js"
