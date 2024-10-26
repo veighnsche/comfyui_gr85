@@ -9,7 +9,6 @@ class TagInjectorLarge:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "seed": ("INT", {"forceInput": True, "default": 0}),
                 "template": ("STRING", {"multiline": True, "dynamicPrompts": True,
                                         "default": "In a __location__ under a __weather__ sky, a __personality__ person shows __emotion__ while wearing __style__. The __time__ is perfect for a __action__ amidst __mood__."}),
             },
@@ -42,7 +41,7 @@ class TagInjectorLarge:
     FUNCTION = "inject_tag"
     CATEGORY = "GR85/Prompt"
 
-    def inject_tag(self, seed, template, tag_1=None, tag_2=None, tag_3=None, tag_4=None, tag_5=None,
+    def inject_tag(self, template, tag_1=None, tag_2=None, tag_3=None, tag_4=None, tag_5=None,
                    tag_6=None, tag_7=None, tag_8=None, tag_9=None, tag_10=None,
                    tag_name_1="location", tag_name_2="color", tag_name_3="object", tag_name_4="emotion",
                    tag_name_5="weather", tag_name_6="personality", tag_name_7="time", tag_name_8="action",

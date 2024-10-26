@@ -78,6 +78,7 @@ class FluxModelMergeParameters:
     # Defines the types of values returned by the node
     RETURN_TYPES = (
         "STRING",  # Comma-separated values
+        "FLOAT",
         *IMAGE_INPUTS,
         *DOUBLE_BLOCKS,
         *SINGLE_BLOCKS,
@@ -93,6 +94,7 @@ class FluxModelMergeParameters:
     # Combines all return names into a single tuple
     RETURN_NAMES = (
         "comma_separated_values",
+        "average_value",
         *IMAGE_INPUT_NAMES,
         *DOUBLE_BLOCK_NAMES,
         *SINGLE_BLOCK_NAMES,
@@ -213,5 +215,7 @@ class FluxModelMergeParameters:
         # Create a comma-separated string of all values for reference
         comma_separated_values = ", ".join(map(str, value_list))
 
+        average_value = sum(value_list) / len(value_list)
+
         # Return the comma-separated string and unpack the list of values
-        return (comma_separated_values, *value_list)
+        return (comma_separated_values, average_value, *value_list)

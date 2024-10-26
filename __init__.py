@@ -26,6 +26,9 @@ from custom_nodes.comfyui_gr85.nodes.prompt.wildcard.random_title_character impo
 from custom_nodes.comfyui_gr85.nodes.prompt.wildcard.random_wildcard_tag_picker import RandomWildcardTagPicker
 from custom_nodes.comfyui_gr85.nodes.utils.flux_model_merge_parameters import FluxModelMergeParameters
 from custom_nodes.comfyui_gr85.nodes.utils.next_seed import NextSeed
+from custom_nodes.comfyui_gr85.nodes.utils.random_float import RandomFloat
+from custom_nodes.comfyui_gr85.nodes.utils.random_int import RandomInt
+from custom_nodes.comfyui_gr85.nodes.utils.save_text_file import SaveTextFile
 from custom_nodes.comfyui_gr85.nodes.utils.str_safe import StrSafe
 
 NODE_CLASS_MAPPINGS = {
@@ -57,6 +60,9 @@ NODE_CLASS_MAPPINGS = {
     "GR85_UpdateT5Blocks": UpdateT5Blocks,
     "GR85_GenerateDefaultClipValues": GenerateDefaultCLIPValues,
     "GR85_FluxAttentionSeeker2": FluxAttentionSeeker2,
+    "GR85_RandomFloat": RandomFloat,
+    "GR85_RandomInt": RandomInt,
+    "GR85_SaveTextFile": SaveTextFile,
 
     "GR85_FluxModelMergeParameters": FluxModelMergeParameters,
     "GR85_NextSeed": NextSeed,
@@ -95,6 +101,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_UpdateT5Blocks": "Update T5 Blocks",
     "GR85_GenerateDefaultClipValues": "Generate Default CLIP Values",
     "GR85_FluxAttentionSeeker2": "Flux Attention Seeker 2",
+    "GR85_RandomFloat": "Random Float",
+    "GR85_RandomInt": "Random Int",
+    "GR85_SaveTextFile": "Save Text File",
 
     "GR85_FluxModelMergeParameters": "Flux Model Merge Parameters",
     "GR85_NextSeed": "Next Seed",

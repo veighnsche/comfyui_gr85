@@ -9,7 +9,6 @@ class TagInjector:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "seed": ("INT", {"forceInput": True, "default": 0}),
                 "template": ("STRING", {"multiline": True, "dynamicPrompts": True,
                                         "default": "__elements__"}),
             },
@@ -28,7 +27,7 @@ class TagInjector:
     FUNCTION = "inject_tag"
     CATEGORY = "GR85/Prompt"
 
-    def inject_tag(self, seed, template, tag_1=None, tag_2=None, tag_3=None,
+    def inject_tag(self, template, tag_1=None, tag_2=None, tag_3=None,
                    tag_name_1="elements", tag_name_2="stuff", tag_name_3="things"):
         """
         Inject tags into the template based on the given tag names and values.

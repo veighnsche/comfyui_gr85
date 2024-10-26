@@ -40,7 +40,7 @@ class IntegerSequenceModifier:
     RETURN_NAMES = ("comma_separated_list",)
 
     FUNCTION = "modify_sequence"
-    CATEGORY = "Custom/ComfyUI"
+    CATEGORY = "GR85/Utils"
 
     def modify_sequence(self, starting_int: int, amount_of_ints: int, index: int) -> tuple:
         """
