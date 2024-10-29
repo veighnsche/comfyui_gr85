@@ -19,6 +19,7 @@ from custom_nodes.comfyui_gr85.nodes.utils.next_seed import NextSeed
 from custom_nodes.comfyui_gr85.nodes.utils.random_float import RandomFloat
 from custom_nodes.comfyui_gr85.nodes.utils.random_int import RandomInt
 from custom_nodes.comfyui_gr85.nodes.utils.save_text_file import SaveTextFile
+from custom_nodes.comfyui_gr85.nodes.utils.save_image_file import SaveImageFile
 from custom_nodes.comfyui_gr85.nodes.utils.str_safe import StrSafe
 
 NODE_CLASS_MAPPINGS = {
@@ -43,6 +44,7 @@ NODE_CLASS_MAPPINGS = {
     "GR85_RandomFloat": RandomFloat,
     "GR85_RandomInt": RandomInt,
     "GR85_SaveTextFile": SaveTextFile,
+    "GR85_SaveImageFile": SaveImageFile,
 
     "GR85_FluxModelMergeParameters": FluxModelMergeParameters,
     "GR85_NextSeed": NextSeed,
@@ -73,6 +75,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_RandomFloat": "Random Float",
     "GR85_RandomInt": "Random Int",
     "GR85_SaveTextFile": "Save Text File",
+    "GR85_SaveImageFile": "Save Image File",
 
     "GR85_FluxModelMergeParameters": "Flux Model Merge Parameters",
     "GR85_NextSeed": "Next Seed",
