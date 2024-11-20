@@ -25,7 +25,7 @@ class SimpleWildcardPicker:
         return {
             "required": {
                 "prompt": ('STRING', {'default': '', 'multiline': True, 'dynamicPrompts': False}),
-                "seed": ('INT', {'default': 0, 'min': 0, 'max': 2147483647})
+                "seed": ('INT', {'default': 0, 'min': 0, 'max': 0xffffffffffffffff})
             }
         }
 

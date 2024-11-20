@@ -11,7 +11,9 @@ class ImageSizerAll:
                 "pixel_amount": ("INT", {
                     "default": 1024*1024,
                     "step": 1,
-                    "display": "number"
+                    "display": "number",
+                    "min": 64,
+                    "max": 0xffffffffffffffff
                 }),
                 "width": ("INT", {
                     "default": 1,
