@@ -5,6 +5,10 @@ from custom_nodes.comfyui_gr85.nodes.latent.random_ratio import RandomRatio
 from custom_nodes.comfyui_gr85.nodes.logging.show_text import ShowText
 from custom_nodes.comfyui_gr85.nodes.mask.paste_by_mask_gr85 import PasteByMaskGr85
 from custom_nodes.comfyui_gr85.nodes.mask.filter_and_combine_masks import FilterAndCombineMasks
+from custom_nodes.comfyui_gr85.nodes.mask.mask_connect_mst import MaskConnectMST
+from custom_nodes.comfyui_gr85.nodes.mask.island_mask_generator import IslandMaskGenerator
+from custom_nodes.comfyui_gr85.nodes.mask.mask_splitter import MaskSplitter
+from custom_nodes.comfyui_gr85.nodes.mask.randomized_mask_transform import RandomizedMaskTransform
 from custom_nodes.comfyui_gr85.nodes.prompt.contains_word import ContainsWord
 from custom_nodes.comfyui_gr85.nodes.prompt.flux_attention_seeker_2 import FluxAttentionSeeker2
 from custom_nodes.comfyui_gr85.nodes.prompt.flux_attention_seeker_3 import FluxAttentionSeeker3
@@ -30,6 +34,7 @@ from custom_nodes.comfyui_gr85.nodes.florence2.nodes import Florence2RunCTPG
 from custom_nodes.comfyui_gr85.nodes.florence2.nodes import CTGPhrases
 from custom_nodes.comfyui_gr85.nodes.florence2.nodes import CTGPhrasesSimple
 from custom_nodes.comfyui_gr85.nodes.florence2.mask_batch_to_segs import MaskBatchToSEGS
+from custom_nodes.comfyui_gr85.nodes.florence2.florence2_to_coordinates import Florence2toCoordinatesGR85
 
 NODE_CLASS_MAPPINGS = {
     "GR85_ImageDimensionResizer": ImageDimensionResizer,
@@ -42,8 +47,9 @@ NODE_CLASS_MAPPINGS = {
     "GR85_Sam2Segmentation": Sam2Segmentation,
     "GR85_Florence2RunCTPG": Florence2RunCTPG,
     "GR85_CTGPhrases": CTGPhrases,
-    "CTGPhrasesSimple": CTGPhrasesSimple,
+    "GR85_CTGPhrasesSimple": CTGPhrasesSimple,
     "GR85_MaskBatchToSEGS": MaskBatchToSEGS,
+    "GR85_Florence2toCoordinatesGR85": Florence2toCoordinatesGR85,
 
     "GR85_ContainsWord": ContainsWord,
     "GR85_IntToString": IntToStringConverter,
@@ -69,7 +75,11 @@ NODE_CLASS_MAPPINGS = {
     "GR85_StrSafe": StrSafe,
 
     "GR85_PasteByMaskGr85": PasteByMaskGr85,
-    "GR85_FilterAndCombineMasks": FilterAndCombineMasks
+    "GR85_FilterAndCombineMasks": FilterAndCombineMasks,
+    "GR85_MaskConnectMST": MaskConnectMST,
+    "GR85_RandomizedMaskTransform": RandomizedMaskTransform,
+    "GR85_IslandMaskGenerator": IslandMaskGenerator,
+    "GR85_MaskSplitter": MaskSplitter,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -83,8 +93,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_Sam2Segmentation": "Sam2Segmentation (GR85)",
     "GR85_Florence2RunCTPG": "Florence2RunCTPG (GR85)",
     "GR85_CTGPhrases": "CTGPhrases",
-    "CTGPhrasesSimple": "CTGPhrasesSimple",
+    "GR85_CTGPhrasesSimple": "CTGPhrasesSimple",
     "GR85_MaskBatchToSEGS": "MaskBatchToSEGS",
+    "GR85_Florence2toCoordinatesGR85": "Florence2toCoordinatesGR85",
 
     "GR85_ContainsWord": "Contains Word",
     "GR85_IntToString": "Int To String",
@@ -110,7 +121,11 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_StrSafe": "String Safe",
 
     "GR85_PasteByMaskGr85": "Paste By Mask Gr85",
-    "GR85_FilterAndCombineMasks": "Filter And Combine Masks"
+    "GR85_FilterAndCombineMasks": "Filter And Combine Masks",
+    "GR85_MaskConnectMST": "Mask Connect MST",
+    "GR85_RandomizedMaskTransform": "Randomized Mask Transform",
+    "GR85_IslandMaskGenerator": "Island Mask Generator",
+    "GR85_MaskSplitter": "Mask Splitter",
 }
 
 WEB_DIRECTORY = "./js"

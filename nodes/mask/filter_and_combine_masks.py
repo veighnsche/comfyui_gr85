@@ -19,7 +19,7 @@ class FilterAndCombineMasks:
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "doit"
-    CATEGORY = "ImpactPack/Operation"
+    CATEGORY = "GR85/Mask"
 
     def log(self, message, data=None):
         print(f"[FilterAndCombineMasks]: {message}")
