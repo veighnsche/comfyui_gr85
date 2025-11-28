@@ -1,6 +1,8 @@
 import math
+from comfy_api.latest import io
 
-class ImageSizerAll:
+
+class ImageSizerAll(io.ComfyNode):
     def __init__(self):
         pass
 
@@ -46,6 +48,67 @@ class ImageSizerAll:
     FUNCTION = "resize_dimensions_all"
 
     CATEGORY = "GR85/Resolution"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_ImageSizerAll",
+            display_name="Image Sizer All",
+            category="GR85/Resolution",
+            inputs=[
+                io.Int.Input(
+                    "pixel_amount",
+                    default=1024 * 1024,
+                    min=64,
+                    max=0xFFFFFFFFFFFFFFFF,
+                ),
+                io.Int.Input(
+                    "width",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "height",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.String.Input(
+                    "orientation",
+                    default="original",
+                ),
+                io.Int.Input(
+                    "tolerance",
+                    default=16,
+                    min=1,
+                    max=128,
+                ),
+            ],
+            outputs=[
+                io.Int.Output(),
+                io.Int.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        pixel_amount: int,
+        width: int,
+        height: int,
+        orientation: str,
+        tolerance: int,
+    ) -> io.NodeOutput:
+        instance = cls()
+        new_width, new_height = instance.resize_dimensions_all(
+            pixel_amount=pixel_amount,
+            width=width,
+            height=height,
+            orientation=orientation,
+            tolerance=tolerance,
+        )
+        return io.NodeOutput(new_width, new_height)
 
     def resize_dimensions_all(self, pixel_amount, width, height, orientation, tolerance):
         """

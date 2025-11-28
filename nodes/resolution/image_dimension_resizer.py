@@ -1,7 +1,8 @@
 import math
+from comfy_api.latest import io
 
 
-class ImageDimensionResizer:
+class ImageDimensionResizer(io.ComfyNode):
     def __init__(self):
         pass
 
@@ -35,6 +36,51 @@ class ImageDimensionResizer:
     FUNCTION = "resize_dimensions"
 
     CATEGORY = "GR85/Resolution"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_ImageDimensionResizer",
+            display_name="Image Dimension Resizer",
+            category="GR85/Resolution",
+            inputs=[
+                io.Int.Input(
+                    "original_width",
+                    default=512,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "original_height",
+                    default=512,
+                    min=1,
+                    max=4096,
+                ),
+                io.String.Input(
+                    "target_dimensions",
+                    default="512x512",
+                ),
+            ],
+            outputs=[
+                io.Int.Output(),
+                io.Int.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        original_width: int,
+        original_height: int,
+        target_dimensions: str,
+    ) -> io.NodeOutput:
+        instance = cls()
+        width, height = instance.resize_dimensions(
+            original_width=original_width,
+            original_height=original_height,
+            target_dimensions=target_dimensions,
+        )
+        return io.NodeOutput(width, height)
 
     def resize_dimensions(self, original_width, original_height, target_dimensions):
         """

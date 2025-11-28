@@ -1,6 +1,8 @@
 import math
+from comfy_api.latest import io
 
-class ImageSizer:
+
+class ImageSizer(io.ComfyNode):
     def __init__(self):
         pass
 
@@ -40,6 +42,65 @@ class ImageSizer:
     FUNCTION = "resize_dimensions"
 
     CATEGORY = "GR85/Resolution"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_ImageSizer",
+            display_name="Image Sizer",
+            category="GR85/Resolution",
+            inputs=[
+                io.String.Input(
+                    "original_dimensions",
+                    default="512x512",
+                ),
+                io.Int.Input(
+                    "width",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "height",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.String.Input(
+                    "orientation",
+                    default="original",
+                ),
+                io.Int.Input(
+                    "tolerance",
+                    default=16,
+                    min=1,
+                    max=128,
+                ),
+            ],
+            outputs=[
+                io.Int.Output(),
+                io.Int.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        original_dimensions: str,
+        width: int,
+        height: int,
+        orientation: str,
+        tolerance: int,
+    ) -> io.NodeOutput:
+        instance = cls()
+        new_width, new_height = instance.resize_dimensions(
+            original_dimensions=original_dimensions,
+            width=width,
+            height=height,
+            orientation=orientation,
+            tolerance=tolerance,
+        )
+        return io.NodeOutput(new_width, new_height)
 
     def resize_dimensions(self, original_dimensions, width, height, orientation, tolerance):
         source_width, source_height = map(int, original_dimensions.split("x"))

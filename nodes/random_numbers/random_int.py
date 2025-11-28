@@ -1,6 +1,7 @@
 import random
+from comfy_api.latest import io
 
-class RandomInt:
+class RandomInt(io.ComfyNode):
     """
     A ComfyUI node class that generates a random integer based on given inputs.
 
@@ -27,6 +28,51 @@ class RandomInt:
 
     FUNCTION = "generate_random_int"
     CATEGORY = "GR85/Random/Numbers"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_RandomInt",
+            display_name="Random Int",
+            category="GR85/Random/Numbers",
+            inputs=[
+                io.Int.Input(
+                    "seed",
+                    default=0,
+                    min=0,
+                ),
+                io.Int.Input(
+                    "min_value",
+                    default=0,
+                    min=-10000000000,
+                    max=10000000000,
+                ),
+                io.Int.Input(
+                    "max_value",
+                    default=100,
+                    min=-10000000000,
+                    max=10000000000,
+                ),
+            ],
+            outputs=[
+                io.Int.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        seed: int,
+        min_value: int,
+        max_value: int,
+    ) -> io.NodeOutput:
+        instance = cls()
+        (value,) = instance.generate_random_int(
+            seed=seed,
+            min_value=min_value,
+            max_value=max_value,
+        )
+        return io.NodeOutput(value)
 
     def generate_random_int(self, seed: int, min_value: int, max_value: int) -> tuple:
         """

@@ -1,7 +1,8 @@
 import re
+from comfy_api.latest import io
 
 
-class TagInjectorLarge:
+class TagInjectorLarge(io.ComfyNode):
     def __init__(self):
         pass
 
@@ -40,6 +41,100 @@ class TagInjectorLarge:
     RETURN_NAMES = ("tagged_text", "placeholders")
     FUNCTION = "inject_tag"
     CATEGORY = "GR85/Prompt/Tags"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_TagInjectorLarge",
+            display_name="Tag Injector Large",
+            category="GR85/Prompt/Tags",
+            inputs=[
+                io.String.Input(
+                    "template",
+                    multiline=True,
+                    default=(
+                        "In a __location__ under a __weather__ sky, a __personality__ person shows "
+                        "__emotion__ while wearing __style__. The __time__ is perfect for a __action__ "
+                        "amidst __mood__."
+                    ),
+                ),
+                io.String.Input("tag_1", multiline=True, default=""),
+                io.String.Input("tag_2", multiline=True, default=""),
+                io.String.Input("tag_3", multiline=True, default=""),
+                io.String.Input("tag_4", multiline=True, default=""),
+                io.String.Input("tag_5", multiline=True, default=""),
+                io.String.Input("tag_6", multiline=True, default=""),
+                io.String.Input("tag_7", multiline=True, default=""),
+                io.String.Input("tag_8", multiline=True, default=""),
+                io.String.Input("tag_9", multiline=True, default=""),
+                io.String.Input("tag_10", multiline=True, default=""),
+                io.String.Input("tag_name_1", default="location"),
+                io.String.Input("tag_name_2", default="color"),
+                io.String.Input("tag_name_3", default="object"),
+                io.String.Input("tag_name_4", default="emotion"),
+                io.String.Input("tag_name_5", default="weather"),
+                io.String.Input("tag_name_6", default="personality"),
+                io.String.Input("tag_name_7", default="time"),
+                io.String.Input("tag_name_8", default="action"),
+                io.String.Input("tag_name_9", default="style"),
+                io.String.Input("tag_name_10", default="mood"),
+            ],
+            outputs=[
+                io.String.Output(),
+                io.String.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        template: str,
+        tag_1: str = "",
+        tag_2: str = "",
+        tag_3: str = "",
+        tag_4: str = "",
+        tag_5: str = "",
+        tag_6: str = "",
+        tag_7: str = "",
+        tag_8: str = "",
+        tag_9: str = "",
+        tag_10: str = "",
+        tag_name_1: str = "location",
+        tag_name_2: str = "color",
+        tag_name_3: str = "object",
+        tag_name_4: str = "emotion",
+        tag_name_5: str = "weather",
+        tag_name_6: str = "personality",
+        tag_name_7: str = "time",
+        tag_name_8: str = "action",
+        tag_name_9: str = "style",
+        tag_name_10: str = "mood",
+    ) -> io.NodeOutput:
+        instance = cls()
+        tagged_text, placeholders = instance.inject_tag(
+            template=template,
+            tag_1=tag_1,
+            tag_2=tag_2,
+            tag_3=tag_3,
+            tag_4=tag_4,
+            tag_5=tag_5,
+            tag_6=tag_6,
+            tag_7=tag_7,
+            tag_8=tag_8,
+            tag_9=tag_9,
+            tag_10=tag_10,
+            tag_name_1=tag_name_1,
+            tag_name_2=tag_name_2,
+            tag_name_3=tag_name_3,
+            tag_name_4=tag_name_4,
+            tag_name_5=tag_name_5,
+            tag_name_6=tag_name_6,
+            tag_name_7=tag_name_7,
+            tag_name_8=tag_name_8,
+            tag_name_9=tag_name_9,
+            tag_name_10=tag_name_10,
+        )
+        return io.NodeOutput(tagged_text, placeholders)
 
     def inject_tag(self, template, tag_1=None, tag_2=None, tag_3=None, tag_4=None, tag_5=None,
                    tag_6=None, tag_7=None, tag_8=None, tag_9=None, tag_10=None,

@@ -16,41 +16,9 @@ from custom_nodes.comfyui_gr85.nodes.random_seed.next_seed import NextSeed
 from custom_nodes.comfyui_gr85.nodes.random_numbers.random_float import RandomFloat
 from custom_nodes.comfyui_gr85.nodes.random_numbers.random_int import RandomInt
 
-NODE_CLASS_MAPPINGS = {
-    "GR85_ImageDimensionResizer": ImageDimensionResizer,
-    "GR85_ImageSizer": ImageSizer,
-    "GR85_ImageSizerAll": ImageSizerAll,
-    "GR85_RandomRatio": RandomRatio,
+NODE_CLASS_MAPPINGS = {}
 
-    "GR85_SeedBasedOutputSelector": SeedBasedOutputSelector,
-    "GR85_TagInjector": TagInjector,
-    "GR85_TagInjectorSingle": TagInjectorSingle,
-    "GR85_TagInjectorDuo": TagInjectorDuo,
-    "GR85_TagInjectorLarge": TagInjectorLarge,
-
-    "GR85_RandomFloat": RandomFloat,
-    "GR85_RandomInt": RandomInt,
-
-    "GR85_NextSeed": NextSeed,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "GR85_ImageDimensionResizer": "Image Dimension Resizer",
-    "GR85_ImageSizer": "Image Sizer",
-    "GR85_ImageSizerAll": "Image Sizer All",
-    "GR85_RandomRatio": "Random Ratio",
-
-    "GR85_SeedBasedOutputSelector": "Seed Based Output Selector",
-    "GR85_TagInjector": "Tag Injector",
-    "GR85_TagInjectorSingle": "Tag Injector Single",
-    "GR85_TagInjectorDuo": "Tag Injector Duo",
-    "GR85_TagInjectorLarge": "Tag Injector Large",
-
-    "GR85_RandomFloat": "Random Float",
-    "GR85_RandomInt": "Random Int",
-
-    "GR85_NextSeed": "Next Seed",
-}
+NODE_DISPLAY_NAME_MAPPINGS = {}
 
 
 class GR85Extension(ComfyExtension):
@@ -58,6 +26,18 @@ class GR85Extension(ComfyExtension):
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
         return [
             SimpleWildcardPicker,
+            SeedBasedOutputSelector,
+            TagInjectorSingle,
+            TagInjectorDuo,
+            TagInjector,
+            TagInjectorLarge,
+            RandomFloat,
+            RandomInt,
+            NextSeed,
+            ImageDimensionResizer,
+            ImageSizerAll,
+            ImageSizer,
+            RandomRatio,
         ]
 
 

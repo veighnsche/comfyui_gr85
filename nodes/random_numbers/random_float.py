@@ -1,6 +1,7 @@
 import random
+from comfy_api.latest import io
 
-class RandomFloat:
+class RandomFloat(io.ComfyNode):
     """
     A ComfyUI node class that generates a random float based on given inputs.
 
@@ -28,6 +29,60 @@ class RandomFloat:
 
     FUNCTION = "generate_random_float"
     CATEGORY = "GR85/Random/Numbers"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_RandomFloat",
+            display_name="Random Float",
+            category="GR85/Random/Numbers",
+            inputs=[
+                io.Int.Input(
+                    "seed",
+                    default=0,
+                    min=0,
+                ),
+                io.Float.Input(
+                    "min_value",
+                    default=0.0,
+                    min=-1e-10,
+                    max=1e10,
+                    step=0.0001,
+                ),
+                io.Float.Input(
+                    "max_value",
+                    default=1.0,
+                    min=-1e-10,
+                    max=1e10,
+                    step=0.0001,
+                ),
+                io.Int.Input(
+                    "decimal_places",
+                    default=10,
+                    min=0,
+                ),
+            ],
+            outputs=[
+                io.Float.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        seed: int,
+        min_value: float,
+        max_value: float,
+        decimal_places: int,
+    ) -> io.NodeOutput:
+        instance = cls()
+        (value,) = instance.generate_random_float(
+            seed=seed,
+            min_value=min_value,
+            max_value=max_value,
+            decimal_places=decimal_places,
+        )
+        return io.NodeOutput(value)
 
     def generate_random_float(self, seed: int, min_value: float, max_value: float, decimal_places: int) -> tuple:
         """

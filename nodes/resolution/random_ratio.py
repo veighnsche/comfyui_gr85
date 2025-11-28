@@ -1,7 +1,8 @@
 import random
+from comfy_api.latest import io
 
 
-class RandomRatio:
+class RandomRatio(io.ComfyNode):
     def __init__(self):
         pass
 
@@ -48,6 +49,69 @@ class RandomRatio:
     FUNCTION = "random_ratio"
 
     CATEGORY = "GR85/Resolution"
+
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_RandomRatio",
+            display_name="Random Ratio",
+            category="GR85/Resolution",
+            inputs=[
+                io.Int.Input(
+                    "seed",
+                    default=0,
+                    min=0,
+                    max=0xFFFFFFFFFFFFFFFF,
+                ),
+                io.Int.Input(
+                    "first_width",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "first_height",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "second_width",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+                io.Int.Input(
+                    "second_height",
+                    default=1,
+                    min=1,
+                    max=4096,
+                ),
+            ],
+            outputs=[
+                io.Int.Output(),
+                io.Int.Output(),
+            ],
+        )
+
+    @classmethod
+    def execute(
+        cls,
+        seed: int,
+        first_width: int,
+        first_height: int,
+        second_width: int,
+        second_height: int,
+    ) -> io.NodeOutput:
+        instance = cls()
+        width, height = instance.random_ratio(
+            seed=seed,
+            first_width=first_width,
+            first_height=first_height,
+            second_width=second_width,
+            second_height=second_height,
+        )
+        return io.NodeOutput(width, height)
 
     def random_ratio(self, seed, first_width, first_height, second_width, second_height):
         """
