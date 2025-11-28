@@ -22,6 +22,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {}
 class GR85Extension(ComfyExtension):
     @override
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
+        print("[comfyui_gr85] GR85Extension.get_node_list called")
         return [
             SimpleWildcardPicker,
             SeedBasedOutputSelector,
@@ -40,6 +41,7 @@ class GR85Extension(ComfyExtension):
 
 
 async def comfy_entrypoint() -> GR85Extension:
+    print("[comfyui_gr85] comfy_entrypoint called, initializing GR85Extension")
     return GR85Extension()
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
