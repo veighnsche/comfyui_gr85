@@ -1,56 +1,74 @@
-class SeedBasedOutputSelector:
-    def __init__(self):
-        pass
+from comfy_api.latest import io
+
+
+class SeedBasedOutputSelector(io.ComfyNode):
+    @classmethod
+    def define_schema(cls) -> io.Schema:
+        return io.Schema(
+            node_id="GR85_SeedBasedOutputSelector",
+            display_name="Seed Based Output Selector",
+            category="GR85/Prompt/Selection",
+            inputs=[
+                io.Int.Input(
+                    "seed_number",
+                    default=0,
+                    min=0,
+                    max=0xFFFFFFFFFFFFFFFF,
+                ),
+                io.String.Input("input_1", default=""),
+                io.String.Input("input_2", default=""),
+                io.String.Input("input_3", default=""),
+                io.String.Input("input_4", default=""),
+                io.String.Input("input_5", default=""),
+                io.String.Input("input_6", default=""),
+                io.String.Input("input_7", default=""),
+                io.String.Input("input_8", default=""),
+                io.String.Input("input_9", default=""),
+                io.String.Input("input_10", default=""),
+            ],
+            outputs=[
+                io.String.Output(),
+            ],
+        )
 
     @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "seed_number": ("INT", {"forceInput": True, "default": 0}),
-            },
-            "optional": {
-                "input_1": ("STRING", {"forceInput": True, "default": None}),
-                "input_2": ("STRING", {"forceInput": True, "default": None}),
-                "input_3": ("STRING", {"forceInput": True, "default": None}),
-                "input_4": ("STRING", {"forceInput": True, "default": None}),
-                "input_5": ("STRING", {"forceInput": True, "default": None}),
-                "input_6": ("STRING", {"forceInput": True, "default": None}),
-                "input_7": ("STRING", {"forceInput": True, "default": None}),
-                "input_8": ("STRING", {"forceInput": True, "default": None}),
-                "input_9": ("STRING", {"forceInput": True, "default": None}),
-                "input_10": ("STRING", {"forceInput": True, "default": None}),
-            }
-        }
+    def execute(
+        cls,
+        seed_number: int,
+        input_1: str = "",
+        input_2: str = "",
+        input_3: str = "",
+        input_4: str = "",
+        input_5: str = "",
+        input_6: str = "",
+        input_7: str = "",
+        input_8: str = "",
+        input_9: str = "",
+        input_10: str = "",
+    ) -> io.NodeOutput:
+        """Select an output based on the seed number and available non-null inputs."""
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("final_output",)
+        inputs = [
+            input_1,
+            input_2,
+            input_3,
+            input_4,
+            input_5,
+            input_6,
+            input_7,
+            input_8,
+            input_9,
+            input_10,
+        ]
 
-    FUNCTION = "select_output"
+        # Treat both None and empty strings as "no value" for optional inputs
+        non_empty_inputs = [value for value in inputs if value not in (None, "")]
+        num_outputs = len(non_empty_inputs)
 
-    CATEGORY = "GR85/Prompt/Selection"
-
-    def select_output(self, seed_number, input_1=None, input_2=None, input_3=None, input_4=None, input_5=None, input_6=None, input_7=None, input_8=None, input_9=None, input_10=None):
-        """
-        Select an output based on the seed number and available non-null inputs.
-        """
-
-        # Collect all inputs into a list
-        inputs = [input_1, input_2, input_3, input_4, input_5, input_6, input_7, input_8, input_9, input_10]
-
-        # Filter out the null inputs (None)
-        non_null_inputs = [i for i in inputs if i is not None]
-
-        # Count the number of non-null inputs
-        num_outputs = len(non_null_inputs)
-
-        # If no non-null inputs exist, return an empty string or some indication of no valid input
         if num_outputs == 0:
-            return ("",)
+            return io.NodeOutput("")
 
-        # Perform modulus operation with the number of non-null inputs
         output_index = seed_number % num_outputs
+        final_output = non_empty_inputs[output_index]
 
-        # Select the correct output from the list of non-null inputs
-        final_output = non_null_inputs[output_index]
-
-        return (final_output,)
+        return io.NodeOutput(final_output)
