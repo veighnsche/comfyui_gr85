@@ -27,7 +27,7 @@ class RandomFloat:
     RETURN_NAMES = ("random_float",)
 
     FUNCTION = "generate_random_float"
-    CATEGORY = "GR85/Utils"
+    CATEGORY = "GR85/Random/Numbers"
 
     def generate_random_float(self, seed: int, min_value: float, max_value: float, decimal_places: int) -> tuple:
         """

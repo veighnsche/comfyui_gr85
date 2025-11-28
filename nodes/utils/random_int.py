@@ -26,7 +26,7 @@ class RandomInt:
     RETURN_NAMES = ("random_int",)
 
     FUNCTION = "generate_random_int"
-    CATEGORY = "GR85/Utils"
+    CATEGORY = "GR85/Random/Numbers"
 
     def generate_random_int(self, seed: int, min_value: int, max_value: int) -> tuple:
         """

@@ -47,7 +47,7 @@ class RandomRatio:
 
     FUNCTION = "random_ratio"
 
-    CATEGORY = "GR85/Latent"
+    CATEGORY = "GR85/Resolution"
 
     def random_ratio(self, seed, first_width, first_height, second_width, second_height):
         """

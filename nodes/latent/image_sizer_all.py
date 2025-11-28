@@ -45,7 +45,7 @@ class ImageSizerAll:
 
     FUNCTION = "resize_dimensions_all"
 
-    CATEGORY = "GR85/Latent"
+    CATEGORY = "GR85/Resolution"
 
     def resize_dimensions_all(self, pixel_amount, width, height, orientation, tolerance):
         """

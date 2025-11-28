@@ -27,7 +27,7 @@ class SeedBasedOutputSelector:
 
     FUNCTION = "select_output"
 
-    CATEGORY = "GR85/Prompt"
+    CATEGORY = "GR85/Prompt/Selection"
 
     def select_output(self, seed_number, input_1=None, input_2=None, input_3=None, input_4=None, input_5=None, input_6=None, input_7=None, input_8=None, input_9=None, input_10=None):
         """

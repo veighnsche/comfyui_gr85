@@ -34,7 +34,7 @@ class ImageDimensionResizer:
 
     FUNCTION = "resize_dimensions"
 
-    CATEGORY = "GR85/Latent"
+    CATEGORY = "GR85/Resolution"
 
     def resize_dimensions(self, original_width, original_height, target_dimensions):
         """

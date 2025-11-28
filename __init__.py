@@ -1,3 +1,7 @@
+from typing_extensions import override
+
+from comfy_api.latest import ComfyExtension, io
+
 from custom_nodes.comfyui_gr85.nodes.latent.image_dimension_resizer import ImageDimensionResizer
 from custom_nodes.comfyui_gr85.nodes.latent.image_sizer import ImageSizer
 from custom_nodes.comfyui_gr85.nodes.latent.image_sizer_all import ImageSizerAll
@@ -19,7 +23,6 @@ NODE_CLASS_MAPPINGS = {
     "GR85_RandomRatio": RandomRatio,
 
     "GR85_SeedBasedOutputSelector": SeedBasedOutputSelector,
-    "GR85_SimpleWildcardPicker": SimpleWildcardPicker,
     "GR85_TagInjector": TagInjector,
     "GR85_TagInjectorSingle": TagInjectorSingle,
     "GR85_TagInjectorDuo": TagInjectorDuo,
@@ -38,7 +41,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GR85_RandomRatio": "Random Ratio",
 
     "GR85_SeedBasedOutputSelector": "Seed Based Output Selector",
-    "GR85_SimpleWildcardPicker": "Simple Wildcard Picker",
     "GR85_TagInjector": "Tag Injector",
     "GR85_TagInjectorSingle": "Tag Injector Single",
     "GR85_TagInjectorDuo": "Tag Injector Duo",
@@ -49,5 +51,17 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     "GR85_NextSeed": "Next Seed",
 }
+
+
+class GR85Extension(ComfyExtension):
+    @override
+    async def get_node_list(self) -> list[type[io.ComfyNode]]:
+        return [
+            SimpleWildcardPicker,
+        ]
+
+
+async def comfy_entrypoint() -> GR85Extension:
+    return GR85Extension()
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']

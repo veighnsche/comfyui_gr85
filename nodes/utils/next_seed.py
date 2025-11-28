@@ -16,7 +16,7 @@ class NextSeed:
     RETURN_TYPES = ("INT",)
     RETURN_NAMES = ("next_seed",)
     FUNCTION = "next_seed"
-    CATEGORY = "GR85/Utils"
+    CATEGORY = "GR85/Random/Seed"
 
     def next_seed(self, seed):
         random.seed(seed)

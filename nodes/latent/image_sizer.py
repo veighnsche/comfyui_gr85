@@ -39,7 +39,7 @@ class ImageSizer:
 
     FUNCTION = "resize_dimensions"
 
-    CATEGORY = "GR85/Latent"
+    CATEGORY = "GR85/Resolution"
 
     def resize_dimensions(self, original_dimensions, width, height, orientation, tolerance):
         source_width, source_height = map(int, original_dimensions.split("x"))

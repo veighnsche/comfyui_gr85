@@ -21,7 +21,7 @@ class TagInjectorSingle:
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("tagged_text", "placeholders")
     FUNCTION = "inject_tag"
-    CATEGORY = "GR85/Prompt"
+    CATEGORY = "GR85/Prompt/Tags"
 
     def inject_tag(self, template, tag_1=None, tag_name_1="elements"):
         """
